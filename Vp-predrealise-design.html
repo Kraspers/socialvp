@@ -1696,6 +1696,21 @@
     </div>
 </div>
 
+<!-- Crop Modal -->
+<div class="crop-modal" id="crop-modal">
+    <div style="width:100%;max-width:420px;background:#131315;border-radius:20px;padding:16px;border:1px solid rgba(255,255,255,0.08);display:flex;flex-direction:column;gap:14px;">
+        <div class="crop-title" id="crop-title">Настройте аватар</div>
+        <div class="crop-canvas-wrap" id="crop-canvas-wrap">
+            <canvas class="crop-canvas" id="crop-canvas"></canvas>
+        </div>
+        <input id="crop-zoom-range" type="range" min="1" max="3" step="0.01" value="1" oninput="updateCropZoom(this.value)">
+        <div class="crop-actions">
+            <button onclick="closeCropModal()" style="background:rgba(255,255,255,0.08);border:none;color:#e6e6e9;padding:12px 18px;border-radius:12px;font-family:inherit;cursor:pointer;">Отмена</button>
+            <button onclick="confirmCrop()" style="background:#0D7EFF;border:none;color:white;padding:12px 18px;border-radius:12px;font-family:inherit;cursor:pointer;">Готово</button>
+        </div>
+    </div>
+</div>
+
 <!-- User Profile Viewer Modal -->
 <div class="post-modal" id="user-profile-modal" style="z-index:11000;">
     <div class="post-modal-content">
@@ -2768,12 +2783,14 @@
         closeCropModal();
     }
     const cropWrap = document.getElementById('crop-canvas-wrap');
-    cropWrap.addEventListener('mousedown', e => { cropDragging = true; cropStartX = e.clientX - cropOffsetX; cropStartY = e.clientY - cropOffsetY; cropWrap.style.cursor = 'grabbing'; });
-    document.addEventListener('mousemove', e => { if (!cropDragging) return; cropOffsetX = e.clientX - cropStartX; cropOffsetY = e.clientY - cropStartY; drawCrop(); });
-    document.addEventListener('mouseup', () => { cropDragging = false; cropWrap.style.cursor = 'grab'; });
-    cropWrap.addEventListener('touchstart', e => { const t = e.touches[0]; cropDragging = true; cropStartX = t.clientX - cropOffsetX; cropStartY = t.clientY - cropOffsetY; }, {passive:true});
-    cropWrap.addEventListener('touchmove', e => { if (!cropDragging) return; const t = e.touches[0]; cropOffsetX = t.clientX - cropStartX; cropOffsetY = t.clientY - cropStartY; drawCrop(); }, {passive:true});
-    cropWrap.addEventListener('touchend', () => { cropDragging = false; });
+    if (cropWrap) {
+        cropWrap.addEventListener('mousedown', e => { cropDragging = true; cropStartX = e.clientX - cropOffsetX; cropStartY = e.clientY - cropOffsetY; cropWrap.style.cursor = 'grabbing'; });
+        document.addEventListener('mousemove', e => { if (!cropDragging) return; cropOffsetX = e.clientX - cropStartX; cropOffsetY = e.clientY - cropStartY; drawCrop(); });
+        document.addEventListener('mouseup', () => { cropDragging = false; cropWrap.style.cursor = 'grab'; });
+        cropWrap.addEventListener('touchstart', e => { const t = e.touches[0]; cropDragging = true; cropStartX = t.clientX - cropOffsetX; cropStartY = t.clientY - cropOffsetY; }, {passive:true});
+        cropWrap.addEventListener('touchmove', e => { if (!cropDragging) return; const t = e.touches[0]; cropOffsetX = t.clientX - cropStartX; cropOffsetY = t.clientY - cropStartY; drawCrop(); }, {passive:true});
+        cropWrap.addEventListener('touchend', () => { cropDragging = false; });
+    }
     document.querySelector('.edit-profile-btn').addEventListener('click', openEditModal);
 
     // ===== FULLSCREEN PHOTO VIEWER =====
