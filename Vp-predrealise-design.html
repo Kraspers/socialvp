@@ -947,6 +947,7 @@
         .edit-post-sheet {
             width: 100%; background: #1c1c1e; border-radius: 20px 20px 0 0;
             border: 1px solid rgba(255,255,255,0.07); border-bottom: none;
+            overflow: hidden;
         }
         .edit-post-save-row {
             position: sticky; bottom: 0;
@@ -1559,9 +1560,9 @@
     <div class="edit-modal" id="edit-modal">
         <div class="edit-modal-handle"></div>
         <div class="edit-modal-header">
-            <button class="edit-close-pill" onclick="closeEditModal()">
-                <span class="edit-close-x"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><line x1="1" y1="1" x2="9" y2="9" stroke="rgba(255,255,255,0.85)" stroke-width="1.8" stroke-linecap="round"/><line x1="9" y1="1" x2="1" y2="9" stroke="rgba(255,255,255,0.85)" stroke-width="1.8" stroke-linecap="round"/></svg></span>
-                <span class="edit-close-label">Редактирование</span>
+            <button class="post-modal-outer-back" onclick="closeEditModal()">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+                Редактирование
             </button>
             <button class="edit-modal-save" onclick="saveProfile()">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
