@@ -1563,9 +1563,9 @@
     <div class="edit-modal" id="edit-modal">
         <div class="edit-modal-handle"></div>
         <div class="edit-modal-header">
-            <button class="post-modal-outer-back" onclick="closeEditModal()">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-                Редактирование
+            <button class="edit-close-pill" onclick="closeEditModal()">
+                <span class="edit-close-x"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><line x1="1" y1="1" x2="9" y2="9" stroke="rgba(255,255,255,0.85)" stroke-width="1.8" stroke-linecap="round"/><line x1="9" y1="1" x2="1" y2="9" stroke="rgba(255,255,255,0.85)" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+                <span class="edit-close-label">Редактирование</span>
             </button>
             <button class="edit-modal-save" onclick="saveProfile()">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
@@ -1577,7 +1577,7 @@
                     <img class="ep-banner-img" id="ep-banner-img" alt="">
                     <div class="ep-banner-overlay">
                         <div class="ep-banner-edit-icon">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><circle cx="12" cy="12" r="3.5"/><path d="M20 16.5V7.5a2.5 2.5 0 0 0-2.5-2.5h-2.1l-1.2-1.4A2 2 0 0 0 12.7 3h-1.4a2 2 0 0 0-1.5.6L8.6 5H6.5A2.5 2.5 0 0 0 4 7.5v9A2.5 2.5 0 0 0 6.5 19h11A2.5 2.5 0 0 0 20 16.5z"/></svg>
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
                         </div>
                     </div>
                 </div>
@@ -1585,42 +1585,48 @@
                     <span class="ep-avatar-letter" id="ep-avatar-letter">Я</span>
                     <img class="ep-avatar-img" id="ep-avatar-img" alt="">
                     <div class="ep-avatar-overlay">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><circle cx="12" cy="12" r="3.5"/><path d="M20 16.5V7.5a2.5 2.5 0 0 0-2.5-2.5h-2.1l-1.2-1.4A2 2 0 0 0 12.7 3h-1.4a2 2 0 0 0-1.5.6L8.6 5H6.5A2.5 2.5 0 0 0 4 7.5v9A2.5 2.5 0 0 0 6.5 19h11A2.5 2.5 0 0 0 20 16.5z"/></svg>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
                     </div>
                 </div>
             </div>
-            <div class="ep-fields">
-                <div class="ep-field">
-                    <label class="ep-label">Имя</label>
+            <div style="padding:52px 16px 0;display:flex;flex-direction:column;gap:16px;">
+                <div>
+                    <div style="font-size:13px;font-weight:700;color:#e6e6e9;margin-bottom:6px;">Имя</div>
                     <input id="ep-name" type="text" placeholder="Ваше отображаемое имя" value="Ваше Имя"
-                        class="ep-input" maxlength="32">
+                        style="width:100%;box-sizing:border-box;background:#2a2a2e;border:none;border-radius:14px;padding:18px 18px;color:#e6e6e9;font-size:16px;font-family:inherit;outline:none;-webkit-appearance:none;"
+                        onfocus="this.style.background='#333338'" onblur="this.style.background='#2a2a2e'">
+                    <div style="font-size:12px;color:rgba(255,255,255,0.3);margin-top:5px;padding-left:4px;">Ваше отображаемое имя</div>
                 </div>
-                <div class="ep-field">
-                    <label class="ep-label">Никнейм</label>
+                <div>
+                    <div style="font-size:13px;font-weight:700;color:#e6e6e9;margin-bottom:6px;">Username</div>
                     <input id="ep-username" type="text" placeholder="username" value="username"
-                        class="ep-input" maxlength="24">
+                        style="width:100%;box-sizing:border-box;background:#2a2a2e;border:none;border-radius:14px;padding:18px 18px;color:#e6e6e9;font-size:16px;font-family:inherit;outline:none;-webkit-appearance:none;"
+                        onfocus="this.style.background='#333338'" onblur="this.style.background='#2a2a2e'"
+                        autocorrect="off" autocapitalize="off" spellcheck="false" oninput="this.value=this.value.replace(/[^a-zA-Z0-9_.-]/g,'')">
+                    <div style="font-size:12px;color:rgba(255,255,255,0.3);margin-top:5px;padding-left:4px;">Ваш уникальный идентификатор (только латиница, цифры и _)</div>
                 </div>
-                <div class="ep-field">
-                    <label class="ep-label">О себе</label>
+                <div>
+                    <div style="font-size:13px;font-weight:700;color:#e6e6e9;margin-bottom:6px;">О себе</div>
                     <textarea id="ep-bio" placeholder="Расскажите немного о себе"
-                        class="ep-input ep-textarea" maxlength="140"></textarea>
+                        style="width:100%;box-sizing:border-box;background:#2a2a2e;border:none;border-radius:14px;padding:18px 18px;color:#e6e6e9;font-size:16px;font-family:inherit;outline:none;resize:none;min-height:100px;-webkit-appearance:none;line-height:1.4;"
+                        onfocus="this.style.background='#333338'" onblur="this.style.background='#2a2a2e'">Здесь ваше описание профиля. Расскажите о себе что-нибудь интересное! #впизде</textarea>
                 </div>
             </div>
             <div class="ep-settings-section">
                 <div class="ep-settings-title">Основные настройки</div>
                 <div class="ep-vpsc-card" onclick="copyVPSC()" title="Нажмите, чтобы скопировать">
-                    <div class="ep-vpsc-label">Ваш VPSC:</div>
+                    <img src="assets/vpprivacy.png" alt="VPSC" style="height:32px;width:auto;object-fit:contain;" onerror="this.style.display='none'">
                     <div class="ep-vpsc-code" id="ep-vpsc-code">A7K2M9</div>
                 </div>
                 <button class="ep-action-btn password" onclick="openChangePasswordModal()">
                     <div class="ep-action-icon">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#30d158" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
                     </div>
                     Изменить пароль
                 </button>
                 <button class="ep-action-btn danger" onclick="openDeleteAccountModal()">
                     <div class="ep-action-icon">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ff453a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/></svg>
                     </div>
                     Удалить аккаунт
                 </button>
@@ -1631,6 +1637,22 @@
     </div>
 </div>
 
+<!-- Crop Modal -->
+<div class="crop-modal" id="crop-modal">
+    <div class="crop-title" id="crop-title">Настройте изображение</div>
+    <div class="crop-canvas-wrap" id="crop-canvas-wrap">
+        <canvas class="crop-canvas" id="crop-canvas" width="320" height="180"></canvas>
+    </div>
+    <div class="crop-zoom">
+        <label>Масштаб</label>
+        <input type="range" id="crop-zoom-range" min="1" max="3" step="0.01" value="1" oninput="updateCropZoom(this.value)">
+    </div>
+    <div class="crop-hint">Перетащите для позиционирования</div>
+    <div class="crop-actions">
+        <button class="crop-btn cancel" onclick="closeCropModal()">Отмена</button>
+        <button class="crop-btn confirm" onclick="confirmCrop()">Применить</button>
+    </div>
+</div>
 <input type="file" id="ep-file-input" accept="image/*" style="display:none" onchange="onFileSelected(event)">
 
 <!-- Change Password Modal -->
@@ -1677,21 +1699,6 @@
                 <button onclick="submitDeleteAccount()" style="width:100%;padding:14px;background:#ff453a;border:none;border-radius:14px;color:white;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;">Удалить навсегда</button>
                 <button onclick="closeDeleteAccountModal()" style="width:100%;padding:14px;background:rgba(255,255,255,0.05);border:none;border-radius:14px;color:#e6e6e9;font-size:15px;font-weight:600;cursor:pointer;font-family:inherit;">Отмена</button>
             </div>
-        </div>
-    </div>
-</div>
-
-<!-- Crop Modal -->
-<div class="crop-modal" id="crop-modal">
-    <div style="width:100%;max-width:420px;background:#131315;border-radius:20px;padding:16px;border:1px solid rgba(255,255,255,0.08);display:flex;flex-direction:column;gap:14px;">
-        <div class="crop-title" id="crop-title">Настройте аватар</div>
-        <div class="crop-canvas-wrap" id="crop-canvas-wrap">
-            <canvas class="crop-canvas" id="crop-canvas"></canvas>
-        </div>
-        <input id="crop-zoom-range" type="range" min="1" max="3" step="0.01" value="1" oninput="updateCropZoom(this.value)">
-        <div class="crop-actions">
-            <button onclick="closeCropModal()" style="background:rgba(255,255,255,0.08);border:none;color:#e6e6e9;padding:12px 18px;border-radius:12px;font-family:inherit;cursor:pointer;">Отмена</button>
-            <button onclick="confirmCrop()" style="background:#0D7EFF;border:none;color:white;padding:12px 18px;border-radius:12px;font-family:inherit;cursor:pointer;">Готово</button>
         </div>
     </div>
 </div>
