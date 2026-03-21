@@ -606,6 +606,23 @@
         }
         .edit-modal-overlay.active { display: flex; }
         .edit-modal-overlay.visible { opacity: 1; pointer-events: auto; }
+        #edit-modal-overlay {
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+        }
+        .edit-modal-topbar {
+            width: 100%; max-width: 600px;
+            padding: 0 8px 10px;
+            display: flex; align-items: center;
+            transform: translateY(100%);
+            transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+            pointer-events: none;
+        }
+        #edit-modal-overlay.visible .edit-modal-topbar {
+            transform: translateY(0);
+            pointer-events: auto;
+        }
         .edit-modal {
             width: 100%; max-width: 600px;
             background: #0f0f11;
@@ -933,6 +950,7 @@
             position: fixed; inset: 0; background: rgba(0,0,0,0.55);
             z-index: 18000; display: none; opacity: 0; transition: opacity 0.28s;
             pointer-events: none;
+            backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
         }
         .edit-post-overlay.active { display: block; }
         .edit-post-overlay.visible { opacity: 1; pointer-events: auto; }
@@ -1560,13 +1578,16 @@
 
 <!-- Edit Profile Modal -->
 <div class="edit-modal-overlay" id="edit-modal-overlay">
+    <div class="edit-modal-topbar">
+        <button class="post-modal-outer-back" onclick="closeEditModal()">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+            Редактирование
+        </button>
+    </div>
     <div class="edit-modal" id="edit-modal">
         <div class="edit-modal-handle"></div>
         <div class="edit-modal-header">
-            <button class="post-modal-outer-back" onclick="closeEditModal()">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-                Редактирование
-            </button>
+            <div></div>
             <button class="edit-modal-save" onclick="saveProfile()">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
             </button>
