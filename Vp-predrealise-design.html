@@ -61,7 +61,7 @@
         .story-creator.visible { opacity: 1; }
         .story-creator-inner {
             width: 100%; max-width: 600px; height: 88vh;
-            background: #1c1c1e; border-radius: 20px 20px 0 0;
+            background: #131315; border-radius: 20px 20px 0 0;
             display: flex; flex-direction: column; overflow: hidden; position: relative;
             transform: translateY(100%);
             transition: transform 0.45s cubic-bezier(0.16,1,0.3,1);
@@ -73,7 +73,7 @@
             .story-creator-inner { transform: translateY(100%); opacity: 1; }
             .story-creator.visible .story-creator-inner { transform: translateY(0); }
         }
-        .creator-header { padding: 16px; display: flex; align-items: center; justify-content: space-between; background: #1c1c1e; border-bottom: 1px solid rgba(255,255,255,0.06); }
+        .creator-header { padding: 16px; display: flex; align-items: center; justify-content: space-between; background: #131315; border-bottom: 1px solid rgba(255,255,255,0.06); }
         .creator-close { background: none; border: none; color: white; font-size: 28px; cursor: pointer; }
         .creator-title { color: white; font-weight: 600; font-size: 16px; }
         .creator-done { background: #0D7EFF; color: white; border: none; padding: 8px 20px; border-radius: 20px; font-weight: 600; cursor: pointer; }
@@ -276,6 +276,17 @@
         .post-modal-handle { width: 36px; height: 4px; background: rgba(255,255,255,0.18); border-radius: 2px; margin: 10px auto 0; flex-shrink: 0; }
         .post-modal-header { display: none; }
         .post-modal-close { background: none; border: none; color: white; font-size: 24px; cursor: pointer; padding: 8px; margin-right: 16px; display: flex; align-items: center; justify-content: center; }
+
+        #user-profile-modal .post-modal-header {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 8px 8px 8px 0; border-bottom: 1px solid rgba(255,255,255,0.06);
+            background: #131315;
+        }
+        .edit-post-sheet .post-opts-header {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 12px 10px; border-bottom: 1px solid rgba(255,255,255,0.06);
+            background: #1c1c1e;
+        }
         .post-modal-body { flex: 1; overflow-y: auto; padding: 16px; }
         .post-modal .post { background: transparent; border: none; padding: 0; margin: 0; backdrop-filter: none; }
         .post-modal .post-actions { margin-left: 0; justify-content: space-around; border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); padding: 12px 0; margin-top: 20px; }
@@ -522,7 +533,7 @@
         }
 
         @media (min-width: 900px) {
-            .bottom-nav { bottom: auto; right: auto; left: calc(50% - 430px); top: 80px; transform: translateY(0); width: 200px; height: auto; display: flex; flex-direction: column; padding: 8px; border-radius: 18px; gap: 2px; max-width: 200px; background: transparent; border: none; box-shadow: none; backdrop-filter: none; -webkit-backdrop-filter: none; }
+            .bottom-nav { bottom: auto; right: auto; left: max(16px, calc(50% - 520px)); top: 80px; transform: translateY(0); width: 200px; height: auto; display: flex; flex-direction: column; padding: 8px; border-radius: 18px; gap: 2px; max-width: 200px; background: transparent; border: none; box-shadow: none; backdrop-filter: none; -webkit-backdrop-filter: none; }
             .nav-slider { display: none; }
             .nav-btn { width: 100%; height: 52px; padding: 0 14px; border-radius: 14px; flex-direction: row; gap: 14px; flex: none; justify-content: flex-start; font-size: 16px; font-weight: 600; }
             .nav-btn span { display: block; }
@@ -1133,7 +1144,7 @@
         /* ===== DESKTOP LOGOUT + FOOTER ===== */
         .desktop-logout-btn {
             display: none;
-            position: fixed; bottom: 32px; left: calc(50% - 430px);
+            position: fixed; bottom: 32px; left: max(16px, calc(50% - 520px));
             z-index: 500;
             background: none; border: none; cursor: pointer;
             color: rgba(255,255,255,0.55); font-size: 15px; font-weight: 500;
@@ -1144,7 +1155,7 @@
         .desktop-logout-btn:hover { background: rgba(255,255,255,0.06); color: #e6e6e9; }
         .desktop-footer {
             display: none;
-            position: fixed; bottom: 24px; right: calc(50% - 430px);
+            position: fixed; bottom: 24px; right: max(16px, calc(50% - 520px));
             z-index: 500;
             flex-direction: column; align-items: flex-end; gap: 4px;
         }
@@ -1682,6 +1693,9 @@
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
             </button>
             <div style="font-weight:700;font-size:17px;" id="upm-title"></div>
+            <button class="post-modal-close" onclick="closeUserProfile()" style="margin-right:8px;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
         </div>
         <div class="post-modal-body" id="upm-body" style="padding:0;overflow-y:auto;"></div>
     </div>
