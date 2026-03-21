@@ -1876,6 +1876,8 @@
                 </div>`;
             el.addEventListener('click', e => {
                 if (e.target.closest('.action-btn')) return;
+                if (e.target.closest('.post-options-btn')) return;
+                if (e.target.closest('.post-media-item')) return;
                 if (e.target.closest('[data-open-repost-id]')) return;
                 if (e.target.closest('[data-open-profile]')) return;
                 if (e.target.classList.contains('mention')) return;
@@ -1954,6 +1956,8 @@
             </div>`;
         el.addEventListener('click', e => {
             if (e.target.closest('.action-btn')) return;
+            if (e.target.closest('.post-options-btn')) return;
+            if (e.target.closest('.post-media-item')) return;
             if (e.target.closest('[data-open-repost-id]')) return;
             if (e.target.closest('[data-open-profile]')) return;
             if (e.target.classList.contains('mention')) return;
@@ -2796,6 +2800,8 @@
         document.getElementById('pv-next').disabled = pvIndex === pvMedia.length - 1;
     }
     document.addEventListener('click', e => {
+        if (document.getElementById('post-opts-overlay')?.classList.contains('active')) return;
+        if (e.target.closest('#post-opts-wrap, #global-post-dd, .post-options-btn')) return;
         const item = e.target.closest('.post-media-item');
         if (!item) return;
         e.stopPropagation(); // prevent post from opening
@@ -2956,25 +2962,9 @@
     // ===== POST OPTIONS MENU =====
     let postOptsId = null;
 
-    function handlePostOptionsClick(e, postId, btn) {
+    function handlePostOptionsClick(e, postId) {
         e.stopPropagation();
-        if (window.matchMedia('(min-width: 900px)').matches) {
-            postOptsId = postId;
-            // Update pin label
-            const post = posts.find(p => p.id === postId);
-            const isPinned = post && (post.isRepost ? pinnedRepostId === postId : pinnedPostId === postId);
-            document.getElementById('global-dd-pin-label').textContent = isPinned ? 'Открепить' : 'Закрепить';
-            // Position global dropdown near button
-            const dd = document.getElementById('global-post-dd');
-            const rect = btn.getBoundingClientRect();
-            dd.style.display = 'block';
-            dd.style.top = (rect.bottom + 6) + 'px';
-            dd.style.left = (rect.right - dd.offsetWidth) + 'px';
-            // If dropdown would go off right edge
-            if (parseFloat(dd.style.left) < 0) dd.style.left = rect.left + 'px';
-        } else {
-            openPostOptions(e, postId);
-        }
+        openPostOptions(e, postId);
     }
     // Close dropdown on outside click
     document.addEventListener('click', e => {
