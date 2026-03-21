@@ -260,9 +260,9 @@
         .splash-screen.hidden { opacity: 0; visibility: hidden; }
         .splash-logo { width: 120px; height: 120px; object-fit: contain; margin-bottom: 20px; animation: splashPulse 1.5s ease-in-out infinite; }
         @keyframes splashPulse { 0% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.1); opacity: 1; } 100% { transform: scale(1); opacity: 0.8; } }
-        .post-modal { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.55); z-index: 10000; display: none; align-items: flex-end; justify-content: center; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); opacity: 0; transition: opacity 0.3s ease; }
+        .post-modal { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.55); z-index: 10000; display: none; align-items: flex-end; justify-content: center; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); opacity: 0; transition: opacity 0.3s ease; pointer-events: none; }
         .post-modal.active { display: flex; }
-        .post-modal.visible { opacity: 1; }
+        .post-modal.visible { opacity: 1; pointer-events: auto; }
         /* Single wrapper that slides up as one unit */
         .post-modal-wrap { width: 100%; max-width: 600px; display: flex; flex-direction: column; transform: translateY(110%); transition: transform 0.4s cubic-bezier(0.16,1,0.3,1); }
         .post-modal.active .post-modal-wrap { transform: translateY(0); }
@@ -602,9 +602,10 @@
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
             align-items: flex-end; justify-content: center;
+            pointer-events: none;
         }
         .edit-modal-overlay.active { display: flex; }
-        .edit-modal-overlay.visible { opacity: 1; }
+        .edit-modal-overlay.visible { opacity: 1; pointer-events: auto; }
         .edit-modal {
             width: 100%; max-width: 600px;
             background: #0f0f11;
@@ -885,9 +886,10 @@
             position: fixed; inset: 0; background: rgba(0,0,0,0.55);
             backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
             z-index: 17000; display: none; opacity: 0; transition: opacity 0.28s;
+            pointer-events: none;
         }
         .post-opts-overlay.active { display: block; }
-        .post-opts-overlay.visible { opacity: 1; }
+        .post-opts-overlay.visible { opacity: 1; pointer-events: auto; }
         /* Opts wrap — slides as one unit */
         .post-opts-wrap {
             position: fixed; left: 50%; bottom: 0;
@@ -940,9 +942,10 @@
         .edit-post-overlay {
             position: fixed; inset: 0; background: rgba(0,0,0,0.55);
             z-index: 18000; display: none; opacity: 0; transition: opacity 0.28s;
+            pointer-events: none;
         }
         .edit-post-overlay.active { display: block; }
-        .edit-post-overlay.visible { opacity: 1; }
+        .edit-post-overlay.visible { opacity: 1; pointer-events: auto; }
         .edit-post-wrap {
             position: fixed; left: 50%; bottom: 0;
             transform: translateX(-50%) translateY(110%);
