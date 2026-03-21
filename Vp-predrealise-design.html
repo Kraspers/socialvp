@@ -878,8 +878,9 @@
             z-index: 17001;
             display: flex; flex-direction: column;
             transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+            pointer-events: none;
         }
-        .post-opts-wrap.visible { transform: translateX(-50%) translateY(0); }
+        .post-opts-wrap.visible { transform: translateX(-50%) translateY(0); pointer-events: auto; }
         .post-opts-outer-header {
             padding: 0 8px 10px;
             display: flex; align-items: center;
@@ -930,8 +931,9 @@
             width: 100%; max-width: 600px;
             z-index: 18001; background: #1c1c1e; border-radius: 20px 20px 0 0;
             transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+            pointer-events: none;
         }
-        .edit-post-sheet.visible { transform: translateX(-50%) translateY(0); }
+        .edit-post-sheet.visible { transform: translateX(-50%) translateY(0); pointer-events: auto; }
         @media (max-width: 899px) {
             .edit-post-sheet { padding-bottom: 96px; }
         }
@@ -2963,8 +2965,21 @@
     // ===== POST OPTIONS MENU =====
     let postOptsId = null;
 
-    function handlePostOptionsClick(e, postId) {
+    function handlePostOptionsClick(e, postId, btn) {
         e.stopPropagation();
+        if (window.matchMedia('(min-width: 900px)').matches) {
+            postOptsId = postId;
+            const post = posts.find(p => p.id === postId);
+            const isPinned = post && (post.isRepost ? pinnedRepostId === postId : pinnedPostId === postId);
+            document.getElementById('global-dd-pin-label').textContent = isPinned ? 'Открепить' : 'Закрепить';
+            const dd = document.getElementById('global-post-dd');
+            const rect = btn.getBoundingClientRect();
+            dd.style.display = 'block';
+            dd.style.top = (rect.bottom + 8) + 'px';
+            dd.style.left = (rect.right - dd.offsetWidth) + 'px';
+            if (parseFloat(dd.style.left) < 8) dd.style.left = Math.max(8, rect.left) + 'px';
+            return;
+        }
         openPostOptions(e, postId);
     }
     // Close dropdown on outside click
