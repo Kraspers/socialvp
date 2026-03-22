@@ -61,7 +61,7 @@
         .story-creator.visible { opacity: 1; }
         .story-creator-inner {
             width: 100%; max-width: 600px; height: 88vh;
-            background: #131315; border-radius: 20px 20px 0 0;
+            background: #1a1b1f; border-radius: 20px 20px 0 0;
             display: flex; flex-direction: column; overflow: hidden; position: relative;
             transform: translateY(100%);
             transition: transform 0.45s cubic-bezier(0.16,1,0.3,1);
@@ -73,7 +73,7 @@
             .story-creator-inner { transform: translateY(100%); opacity: 1; }
             .story-creator.visible .story-creator-inner { transform: translateY(0); }
         }
-        .creator-header { padding: 16px; display: flex; align-items: center; justify-content: space-between; background: #131315; border-bottom: 1px solid rgba(255,255,255,0.06); }
+        .creator-header { padding: 16px; display: flex; align-items: center; justify-content: space-between; background: #1a1b1f; border-bottom: 1px solid rgba(255,255,255,0.06); }
         .creator-close { background: none; border: none; color: white; font-size: 28px; cursor: pointer; }
         .creator-title { color: white; font-weight: 600; font-size: 16px; }
         .creator-done { background: #0D7EFF; color: white; border: none; padding: 8px 20px; border-radius: 20px; font-weight: 600; cursor: pointer; }
@@ -270,7 +270,7 @@
         .post-modal-outer-back { background: none; border: none; color: white; cursor: pointer; display: flex; align-items: center; gap: 6px; font-size: 20px; font-weight: 700; font-family: inherit; padding: 8px 12px; border-radius: 12px; }
         .post-modal-outer-back:hover { background: rgba(255,255,255,0.08); }
         .post-modal-outer-back svg { flex-shrink: 0; }
-        .post-modal-content { background: #0f0f11; width: 100%; height: 84vh; position: relative; display: flex; flex-direction: column; border-radius: 22px 22px 0 0; border: none; overflow: hidden; }
+        .post-modal-content { background: #1a1b1f; width: 100%; height: 84vh; position: relative; display: flex; flex-direction: column; border-radius: 22px 22px 0 0; border: none; overflow: hidden; }
         .post-modal-topbar { display: none; }
         .post-modal-back { display: none; }
         .post-modal-handle { width: 36px; height: 4px; background: rgba(255,255,255,0.18); border-radius: 2px; margin: 10px auto 0; flex-shrink: 0; }
@@ -556,6 +556,7 @@
             #repost-modal-overlay .post-modal-content {
                 height: auto; max-height: 70vh; width: 540px; max-width: 540px;
             }
+            #repost-modal-overlay .post-modal-wrap { max-width: 540px; }
             /* On desktop: centered layout */
             .post-modal { justify-content: center; align-items: center; flex-direction: column; gap: 0; }
             .post-modal-outer-header { transform: none !important; transition: none !important; max-width: 600px; padding: 0 20px 10px; }
@@ -588,6 +589,7 @@
                 border-radius: 18px !important;
                 height: 80vh; max-width: 500px;
                 border: 1px solid rgba(255,255,255,0.1) !important;
+                overflow: hidden;
             }
         }
 
@@ -627,7 +629,7 @@
         }
         .edit-modal {
             width: 100%; max-width: 600px;
-            background: #0f0f11;
+            background: #1a1b1f;
             border-radius: 24px 24px 0 0;
             border: none;
             border-bottom: none;
@@ -849,7 +851,7 @@
         .repost-modal-overlay.active { display: flex; }
         .repost-modal-overlay.visible { opacity: 1; }
         .repost-modal-box {
-            width: 100%; max-width: 600px; background: #0f0f11;
+            width: 100%; max-width: 600px; background: #1a1b1f;
             border-radius: 24px 24px 0 0; border: none;
             border-bottom: none; padding: 0 0 40px;
             transform: translateY(100%); transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
@@ -923,7 +925,7 @@
         .post-opts-outer-back:hover { background: rgba(255,255,255,0.08); }
         .post-opts-sheet {
             width: 100%; padding: 0;
-            background: #0f0f11; border-radius: 22px 22px 0 0;
+            background: #1a1b1f; border-radius: 22px 22px 0 0;
             border: none;
         }
         .post-opts-handle {
@@ -968,14 +970,14 @@
         .edit-post-wrap.visible { transform: translateX(-50%) translateY(8px); pointer-events: auto; }
         .edit-post-topbar { padding: 0 8px 10px; display: flex; align-items: center; }
         .edit-post-sheet {
-            width: 100%; background: #0f0f11; border-radius: 20px 20px 0 0;
+            width: 100%; background: #1a1b1f; border-radius: 20px 20px 0 0;
             border: none;
             overflow: hidden;
         }
         .edit-post-save-row {
             position: sticky; bottom: 0;
             padding: 12px 16px 32px;
-            background: linear-gradient(to top,#0f0f11 60%,transparent);
+            background: linear-gradient(to top,#1a1b1f 60%,transparent);
             display: flex; justify-content: flex-end;
         }
         .edit-post-save-btn {
@@ -983,7 +985,7 @@
             font-size: 16px; font-weight: 700; padding: 14px 32px;
             cursor: pointer; font-family: inherit;
         }
-        .edit-post-media-preview { padding: 0 16px 12px; }
+        .edit-post-media-preview { padding: 0 16px 12px; display: flex; flex-wrap: wrap; gap: 6px; }
         .edit-post-media-preview .post-media-grid { margin: 0; }
         @media (max-width: 899px) {
             .edit-post-sheet { padding-bottom: 0; }
@@ -1488,8 +1490,11 @@
     <div class="story-creator" id="story-creator">
         <div class="story-creator-inner">
             <div class="creator-header">
-                <button class="creator-close" id="creator-close">×</button>
-                <div class="creator-title">Создать историю</div>
+                <button class="post-modal-outer-back" id="creator-close">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+                    История
+                </button>
+                <div class="creator-title" style="display:none;">Создать историю</div>
                 <button class="creator-done" id="creator-done" style="display:none;">Готово</button>
             </div>
             <div class="creator-content" style="position:relative;">
@@ -2323,6 +2328,7 @@
 
     // ===== COMPOSER MEDIA =====
     let composerMedia = [];
+    let editPostMedia = [];
     const composerFileInput = document.getElementById('composer-file-input');
     const composerMediaBtn = document.getElementById('composer-media-btn');
     const composerMediaPreview = document.getElementById('composer-media-preview');
@@ -2368,6 +2374,31 @@
 
     function updatePostSubmitState() {
         postSubmit.disabled = postInput.value.trim().length === 0 && composerMedia.length === 0;
+    }
+
+    function renderEditPostMediaPreview() {
+        const box = document.getElementById('edit-post-media-preview');
+        if (!box) return;
+        box.innerHTML = '';
+        editPostMedia.forEach((m, idx) => {
+            const wrap = document.createElement('div');
+            wrap.className = 'media-thumb-wrap';
+            if (m.type === 'video') {
+                wrap.innerHTML = `<video class="media-thumb" src="${m.src}" muted></video><span class="media-thumb-video-badge">Видео</span>`;
+            } else {
+                wrap.innerHTML = `<img class="media-thumb" src="${m.src}" alt="">`;
+            }
+            const rm = document.createElement('button');
+            rm.className = 'media-thumb-remove';
+            rm.innerHTML = '×';
+            rm.onclick = (e) => {
+                e.stopPropagation();
+                editPostMedia.splice(idx, 1);
+                renderEditPostMediaPreview();
+            };
+            wrap.appendChild(rm);
+            box.appendChild(wrap);
+        });
     }
 
     postSubmit.addEventListener('click', () => {
@@ -3098,10 +3129,8 @@
         // Open edit sheet
         postOptsId = id; // restore for save
         document.getElementById('edit-post-textarea').value = post.text || '';
-        const mediaPreview = document.getElementById('edit-post-media-preview');
-        if (mediaPreview) {
-            mediaPreview.innerHTML = (post.media && post.media.length) ? renderPostMedia(post.media) : '';
-        }
+        editPostMedia = (post.media || []).map(m => ({...m}));
+        renderEditPostMediaPreview();
         const ov = document.getElementById('edit-post-overlay');
         const wrap = document.getElementById('edit-post-wrap');
         ov.classList.add('active');
@@ -3117,8 +3146,8 @@
         const wrap = document.getElementById('edit-post-wrap');
         ov.classList.remove('visible');
         wrap.classList.remove('visible');
-        const mediaPreview = document.getElementById('edit-post-media-preview');
-        if (mediaPreview) mediaPreview.innerHTML = '';
+        editPostMedia = [];
+        renderEditPostMediaPreview();
         setTimeout(() => { ov.classList.remove('active'); document.body.style.overflow = ''; }, 380);
     }
     function saveEditedPost() {
@@ -3126,11 +3155,12 @@
         const post = posts.find(p => p.id === postOptsId);
         if (!post) return;
         const nextText = document.getElementById('edit-post-textarea').value.trim();
-        if (nextText === '' && (post.text || '').trim() !== '') {
-            showToast('Текст поста не может быть пустым');
+        if (nextText === '' && editPostMedia.length === 0) {
+            showToast('Нельзя сохранить пустой пост');
             return;
         }
         post.text = nextText;
+        post.media = editPostMedia.map(m => ({...m}));
         closeEditPostSheet();
         postOptsId = null;
         renderPosts();
