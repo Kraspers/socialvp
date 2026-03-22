@@ -59,6 +59,23 @@
         }
         .story-creator.active { display: flex; }
         .story-creator.visible { opacity: 1; }
+        .story-creator-topbar {
+            width: 100%;
+            max-width: 600px;
+            padding: 0 8px 10px;
+            display: flex;
+            align-items: center;
+            position: absolute;
+            left: 50%;
+            top: max(8px, calc(12vh - 56px));
+            transform: translateX(-50%);
+            z-index: 3;
+            pointer-events: none;
+        }
+        .story-creator-topbar .post-modal-outer-back {
+            pointer-events: auto;
+            background: rgba(42,42,46,0.9);
+        }
         .story-creator-inner {
             width: 100%; max-width: 600px; height: 88vh;
             background: #1a1b1f; border-radius: 20px 20px 0 0;
@@ -72,6 +89,7 @@
         @media (min-width: 601px) {
             .story-creator-inner { transform: translateY(100%); opacity: 1; }
             .story-creator.visible .story-creator-inner { transform: translateY(0); }
+            .story-creator-topbar { top: max(8px, calc(6vh - 56px)); }
         }
         .creator-header { padding: 16px; display: flex; align-items: center; justify-content: space-between; background: #1a1b1f; border-bottom: 1px solid rgba(255,255,255,0.06); }
         .creator-close { background: none; border: none; color: white; font-size: 28px; cursor: pointer; }
@@ -396,15 +414,18 @@
             align-items: center;
             gap: 8px;
             margin: 20px 0 24px 16px;
-            padding: 8px 16px 8px 12px;
-            background: rgba(255,255,255,0.07);
+            padding: 8px 14px;
+            background: rgba(80,80,88,0.75);
             border-radius: 999px;
-            border: 1px solid rgba(255,255,255,0.10);
+            border: 1px solid rgba(255,255,255,0.12);
             cursor: pointer;
             width: fit-content;
-            transition: background 0.2s;
+            transition: background 0.2s, border-color 0.2s;
         }
-        .side-menu-header:hover { background: rgba(255,255,255,0.11); }
+        .side-menu-header:hover {
+            background: rgba(96,96,104,0.88);
+            border-color: rgba(255,255,255,0.2);
+        }
         .side-menu-close-btn {
             background: none;
             border: none;
@@ -972,20 +993,31 @@
         .edit-post-sheet {
             width: 100%; background: #1a1b1f; border-radius: 20px 20px 0 0;
             border: none;
-            overflow: hidden;
+            overflow-y: auto;
+            max-height: 86vh;
         }
         .edit-post-save-row {
             position: sticky; bottom: 0;
             padding: 12px 16px 32px;
-            background: linear-gradient(to top,#1a1b1f 60%,transparent);
+            background: #1a1b1f;
             display: flex; justify-content: flex-end;
+        }
+        .edit-post-save-row.has-media {
+            background: linear-gradient(to top,#1a1b1f 60%,transparent);
         }
         .edit-post-save-btn {
             background: #0D7EFF; border: none; border-radius: 28px; color: white;
             font-size: 16px; font-weight: 700; padding: 14px 32px;
             cursor: pointer; font-family: inherit;
+            transition: background 0.2s, color 0.2s;
+        }
+        .edit-post-save-btn:disabled {
+            background: rgba(255,255,255,0.12);
+            color: rgba(255,255,255,0.45);
+            cursor: not-allowed;
         }
         .edit-post-media-preview { padding: 0 16px 12px; display: flex; flex-wrap: wrap; gap: 6px; }
+        .edit-post-media-preview.has-media { padding-bottom: 88px; }
         .edit-post-media-preview .post-media-grid { margin: 0; }
         @media (max-width: 899px) {
             .edit-post-sheet { padding-bottom: 0; }
@@ -1488,12 +1520,14 @@
 
     <!-- Story Creator Modal -->
     <div class="story-creator" id="story-creator">
+        <div class="story-creator-topbar">
+            <button class="post-modal-outer-back" id="creator-close">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+                История
+            </button>
+        </div>
         <div class="story-creator-inner">
             <div class="creator-header">
-                <button class="post-modal-outer-back" id="creator-close">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-                    История
-                </button>
                 <div class="creator-title" style="display:none;">Создать историю</div>
                 <button class="creator-done" id="creator-done" style="display:none;">Готово</button>
             </div>
@@ -1837,7 +1871,7 @@
         </div>
         <div class="edit-post-media-preview" id="edit-post-media-preview"></div>
         <div class="edit-post-save-row">
-            <button class="edit-post-save-btn" onclick="saveEditedPost()">Сохранить</button>
+            <button class="edit-post-save-btn" id="edit-post-save-btn" onclick="saveEditedPost()">Сохранить</button>
         </div>
     </div>
 </div>
@@ -2378,6 +2412,7 @@
 
     function renderEditPostMediaPreview() {
         const box = document.getElementById('edit-post-media-preview');
+        const saveRow = document.querySelector('.edit-post-save-row');
         if (!box) return;
         box.innerHTML = '';
         editPostMedia.forEach((m, idx) => {
@@ -2399,6 +2434,16 @@
             wrap.appendChild(rm);
             box.appendChild(wrap);
         });
+        box.classList.toggle('has-media', editPostMedia.length > 0);
+        if (saveRow) saveRow.classList.toggle('has-media', editPostMedia.length > 0);
+        updateEditPostSaveState();
+    }
+
+    function updateEditPostSaveState() {
+        const saveBtn = document.getElementById('edit-post-save-btn');
+        const text = document.getElementById('edit-post-textarea')?.value.trim() || '';
+        if (!saveBtn) return;
+        saveBtn.disabled = text.length === 0 && editPostMedia.length === 0;
     }
 
     postSubmit.addEventListener('click', () => {
@@ -3070,9 +3115,9 @@
             const dd = document.getElementById('global-post-dd');
             const rect = btn.getBoundingClientRect();
             dd.style.display = 'block';
+            const maxLeft = window.innerWidth - dd.offsetWidth - 8;
             dd.style.top = (rect.bottom + 8) + 'px';
-            dd.style.left = (rect.right - dd.offsetWidth) + 'px';
-            if (parseFloat(dd.style.left) < 8) dd.style.left = Math.max(8, rect.left) + 'px';
+            dd.style.left = Math.min(maxLeft, Math.max(8, rect.left)) + 'px';
             return;
         }
         openPostOptions(e, postId);
@@ -3082,6 +3127,14 @@
         const dd = document.getElementById('global-post-dd');
         if (dd && !dd.contains(e.target)) dd.style.display = 'none';
     });
+    window.addEventListener('resize', () => {
+        const dd = document.getElementById('global-post-dd');
+        if (dd) dd.style.display = 'none';
+    });
+    window.addEventListener('scroll', () => {
+        const dd = document.getElementById('global-post-dd');
+        if (dd) dd.style.display = 'none';
+    }, { passive: true });
 
     function openPostOptions(e, postId) {
         e.stopPropagation();
@@ -3131,6 +3184,7 @@
         document.getElementById('edit-post-textarea').value = post.text || '';
         editPostMedia = (post.media || []).map(m => ({...m}));
         renderEditPostMediaPreview();
+        updateEditPostSaveState();
         const ov = document.getElementById('edit-post-overlay');
         const wrap = document.getElementById('edit-post-wrap');
         ov.classList.add('active');
@@ -3148,6 +3202,7 @@
         wrap.classList.remove('visible');
         editPostMedia = [];
         renderEditPostMediaPreview();
+        updateEditPostSaveState();
         setTimeout(() => { ov.classList.remove('active'); document.body.style.overflow = ''; }, 380);
     }
     function saveEditedPost() {
@@ -3167,6 +3222,7 @@
         showToast('Пост изменён');
     }
     document.getElementById('edit-post-overlay').addEventListener('click', closeEditPostSheet);
+    document.getElementById('edit-post-textarea').addEventListener('input', updateEditPostSaveState);
 
     function postOptsPin() {
         const id = postOptsId;
@@ -3201,7 +3257,7 @@
         toast.textContent = msg;
         toast.classList.add('show');
         clearTimeout(toast._t);
-        toast._t = setTimeout(() => { toast.classList.remove('show'); toast.textContent = 'Скопировано'; }, 2200);
+        toast._t = setTimeout(() => { toast.classList.remove('show'); }, 2200);
     }
 
     // ===== LOGOUT =====
@@ -3244,7 +3300,7 @@
         toast.textContent = 'Пароль изменён';
         toast.classList.add('show');
         clearTimeout(toast._t);
-        toast._t = setTimeout(() => { toast.classList.remove('show'); toast.textContent = 'Скопировано'; }, 2000);
+        toast._t = setTimeout(() => { toast.classList.remove('show'); }, 2000);
     }
 
     // ===== DELETE ACCOUNT =====
@@ -3472,7 +3528,7 @@
         toast.textContent = 'Репост опубликован';
         toast.classList.add('show');
         clearTimeout(toast._t);
-        toast._t = setTimeout(() => { toast.classList.remove('show'); toast.textContent = 'Скопировано'; }, 2000);
+        toast._t = setTimeout(() => { toast.classList.remove('show'); }, 2000);
     }
 
     // ===== UPDATE USER PROFILE VIEWER - add subscribe button + tabs + full posts =====
