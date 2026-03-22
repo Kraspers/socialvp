@@ -67,7 +67,7 @@
             align-items: center;
             position: absolute;
             left: 50%;
-            top: max(8px, calc(12vh - 56px));
+            top: max(8px, calc(16vh - 56px));
             transform: translateX(-50%);
             z-index: 3;
             pointer-events: none;
@@ -89,9 +89,9 @@
         @media (min-width: 601px) {
             .story-creator-inner { transform: translateY(100%); opacity: 1; }
             .story-creator.visible .story-creator-inner { transform: translateY(0); }
-            .story-creator-topbar { top: max(8px, calc(6vh - 56px)); }
+            .story-creator-topbar { top: max(8px, calc(16vh - 56px)); }
         }
-        .creator-header { padding: 16px; display: flex; align-items: center; justify-content: space-between; background: #1a1b1f; border-bottom: 1px solid rgba(255,255,255,0.06); }
+        .creator-header { padding: 16px; display: flex; align-items: center; justify-content: space-between; background: #1a1b1f; border-bottom: none; }
         .creator-close { background: none; border: none; color: white; font-size: 28px; cursor: pointer; }
         .creator-title { color: white; font-weight: 600; font-size: 16px; }
         .creator-done { background: #0D7EFF; color: white; border: none; padding: 8px 20px; border-radius: 20px; font-weight: 600; cursor: pointer; }
@@ -575,9 +575,9 @@
             }
             /* Repost modal on desktop: centered dialog */
             #repost-modal-overlay .post-modal-content {
-                height: auto; max-height: 70vh; width: 540px; max-width: 540px;
+                height: auto; max-height: 70vh; width: 600px; max-width: 600px;
             }
-            #repost-modal-overlay .post-modal-wrap { max-width: 540px; }
+            #repost-modal-overlay .post-modal-wrap { max-width: 600px; }
             /* On desktop: centered layout */
             .post-modal { justify-content: center; align-items: center; flex-direction: column; gap: 0; }
             .post-modal-outer-header { transform: none !important; transition: none !important; max-width: 600px; padding: 0 20px 10px; }
@@ -594,22 +594,23 @@
             /* Edit post sheet on desktop: centered dialog */
             .edit-post-wrap {
                 bottom: auto; top: 50%; left: 50%;
-                transform: translate(-50%, -40%) !important;
-                width: 540px;
+                transform: translate(-50%, -34%) !important;
+                width: 100%;
+                max-width: 600px;
                 opacity: 0;
                 transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), opacity 0.3s !important;
             }
             .edit-post-wrap.visible {
-                transform: translate(-50%, -50%) !important;
+                transform: translate(-50%, -44%) !important;
                 opacity: 1 !important;
             }
             .edit-post-sheet { border-radius: 18px !important; padding-bottom: 0 !important; }
             /* Story creator on desktop: centered dialog */
-            .story-creator { align-items: center; justify-content: center; }
+            .story-creator { align-items: flex-end; justify-content: center; }
             .story-creator-inner {
-                border-radius: 18px !important;
-                height: 80vh; max-width: 500px;
-                border: 1px solid rgba(255,255,255,0.1) !important;
+                border-radius: 20px 20px 0 0 !important;
+                height: 84vh; max-width: 600px;
+                border: none !important;
                 overflow: hidden;
             }
         }
@@ -988,7 +989,7 @@
             transition: transform 0.42s cubic-bezier(0.16,1,0.3,1);
             pointer-events: none;
         }
-        .edit-post-wrap.visible { transform: translateX(-50%) translateY(8px); pointer-events: auto; }
+        .edit-post-wrap.visible { transform: translateX(-50%) translateY(18px); pointer-events: auto; }
         .edit-post-topbar { padding: 0 8px 10px; display: flex; align-items: center; }
         .edit-post-sheet {
             width: 100%; background: #1a1b1f; border-radius: 20px 20px 0 0;
@@ -1002,9 +1003,7 @@
             background: #1a1b1f;
             display: flex; justify-content: flex-end;
         }
-        .edit-post-save-row.has-media {
-            background: linear-gradient(to top,#1a1b1f 60%,transparent);
-        }
+        .edit-post-save-row.has-media { background: #1a1b1f; }
         .edit-post-save-btn {
             background: #0D7EFF; border: none; border-radius: 28px; color: white;
             font-size: 16px; font-weight: 700; padding: 14px 32px;
