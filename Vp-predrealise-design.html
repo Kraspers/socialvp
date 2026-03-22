@@ -270,7 +270,7 @@
         .post-modal-outer-back { background: none; border: none; color: white; cursor: pointer; display: flex; align-items: center; gap: 6px; font-size: 20px; font-weight: 700; font-family: inherit; padding: 8px 12px; border-radius: 12px; }
         .post-modal-outer-back:hover { background: rgba(255,255,255,0.08); }
         .post-modal-outer-back svg { flex-shrink: 0; }
-        .post-modal-content { background: #131315; width: 100%; height: 84vh; position: relative; display: flex; flex-direction: column; border-radius: 22px 22px 0 0; border: 1px solid rgba(255,255,255,0.07); border-bottom: none; overflow: hidden; }
+        .post-modal-content { background: #0f0f11; width: 100%; height: 84vh; position: relative; display: flex; flex-direction: column; border-radius: 22px 22px 0 0; border: none; overflow: hidden; }
         .post-modal-topbar { display: none; }
         .post-modal-back { display: none; }
         .post-modal-handle { width: 36px; height: 4px; background: rgba(255,255,255,0.18); border-radius: 2px; margin: 10px auto 0; flex-shrink: 0; }
@@ -341,8 +341,8 @@
         .stat-item { display: flex; gap: 4px; font-size: 15px; cursor: pointer; }
         .stat-number { font-weight: 700; }
         .stat-label { color: rgba(255,255,255,0.6); }
-        .edit-profile-btn { margin-top: 16px; width: 100%; padding: 14px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.04); border-radius: 20px; font-weight: 600; cursor: pointer; transition: background 0.2s; font-size: 15px; color: #e6e6e9; }
-        .edit-profile-btn:hover { background: rgba(255,255,255,0.04); }
+        .edit-profile-btn { margin-top: 16px; width: 100%; padding: 14px; background: #ffffff; border: none; border-radius: 22px; font-weight: 700; cursor: pointer; transition: opacity 0.2s; font-size: 16px; color: #000; }
+        .edit-profile-btn:hover { opacity: 0.92; }
 
         /* Profile cover menu button — top-left, frosted glass */
         .profile-cover-menu-btn {
@@ -550,7 +550,7 @@
             .post-modal-outer-header { padding: 0 8px 10px; }
             .post-modal-content {
                 height: 85vh; max-height: 800px; border-radius: 18px !important;
-                border: 1px solid rgba(255,255,255,0.08) !important;
+                border: none !important;
             }
             /* Repost modal on desktop: centered dialog */
             #repost-modal-overlay .post-modal-content {
@@ -559,7 +559,7 @@
             /* On desktop: centered layout */
             .post-modal { justify-content: center; align-items: center; flex-direction: column; gap: 0; }
             .post-modal-outer-header { transform: none !important; transition: none !important; max-width: 600px; padding: 0 20px 10px; }
-            .post-modal-content { border-radius: 18px !important; border-bottom: 1px solid rgba(255,255,255,0.07) !important; }
+            .post-modal-content { border-radius: 18px !important; border-bottom: none !important; }
             /* User profile modal: centered panel */
             #user-profile-modal { align-items: center; }
             #user-profile-modal .post-modal-content {
@@ -629,7 +629,7 @@
             width: 100%; max-width: 600px;
             background: #0f0f11;
             border-radius: 24px 24px 0 0;
-            border: 1px solid rgba(255,255,255,0.06);
+            border: none;
             border-bottom: none;
             max-height: 92vh;
             display: flex; flex-direction: column;
@@ -850,7 +850,7 @@
         .repost-modal-overlay.visible { opacity: 1; }
         .repost-modal-box {
             width: 100%; max-width: 600px; background: #0f0f11;
-            border-radius: 24px 24px 0 0; border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 24px 24px 0 0; border: none;
             border-bottom: none; padding: 0 0 40px;
             transform: translateY(100%); transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
         }
@@ -923,8 +923,8 @@
         .post-opts-outer-back:hover { background: rgba(255,255,255,0.08); }
         .post-opts-sheet {
             width: 100%; padding: 0;
-            background: #131315; border-radius: 22px 22px 0 0;
-            border: 1px solid rgba(255,255,255,0.07); border-bottom: none;
+            background: #0f0f11; border-radius: 22px 22px 0 0;
+            border: none;
         }
         .post-opts-handle {
             width: 36px; height: 4px; background: rgba(255,255,255,0.18);
@@ -968,14 +968,14 @@
         .edit-post-wrap.visible { transform: translateX(-50%) translateY(8px); pointer-events: auto; }
         .edit-post-topbar { padding: 0 8px 10px; display: flex; align-items: center; }
         .edit-post-sheet {
-            width: 100%; background: #1c1c1e; border-radius: 20px 20px 0 0;
-            border: 1px solid rgba(255,255,255,0.07); border-bottom: none;
+            width: 100%; background: #0f0f11; border-radius: 20px 20px 0 0;
+            border: none;
             overflow: hidden;
         }
         .edit-post-save-row {
             position: sticky; bottom: 0;
             padding: 12px 16px 32px;
-            background: linear-gradient(to top,#1c1c1e 60%,transparent);
+            background: linear-gradient(to top,#0f0f11 60%,transparent);
             display: flex; justify-content: flex-end;
         }
         .edit-post-save-btn {
@@ -983,6 +983,8 @@
             font-size: 16px; font-weight: 700; padding: 14px 32px;
             cursor: pointer; font-family: inherit;
         }
+        .edit-post-media-preview { padding: 0 16px 12px; }
+        .edit-post-media-preview .post-media-grid { margin: 0; }
         @media (max-width: 899px) {
             .edit-post-sheet { padding-bottom: 0; }
         }
@@ -1828,6 +1830,7 @@
                 style="width:100%;box-sizing:border-box;background:#2a2a2e;border:none;border-radius:16px;padding:16px;color:#e6e6e9;font-size:16px;font-family:inherit;outline:none;resize:none;min-height:120px;line-height:1.5;-webkit-user-select:text;user-select:text;"
                 onfocus="this.style.background='#333338'" onblur="this.style.background='#2a2a2e'"></textarea>
         </div>
+        <div class="edit-post-media-preview" id="edit-post-media-preview"></div>
         <div class="edit-post-save-row">
             <button class="edit-post-save-btn" onclick="saveEditedPost()">Сохранить</button>
         </div>
@@ -3095,6 +3098,10 @@
         // Open edit sheet
         postOptsId = id; // restore for save
         document.getElementById('edit-post-textarea').value = post.text || '';
+        const mediaPreview = document.getElementById('edit-post-media-preview');
+        if (mediaPreview) {
+            mediaPreview.innerHTML = (post.media && post.media.length) ? renderPostMedia(post.media) : '';
+        }
         const ov = document.getElementById('edit-post-overlay');
         const wrap = document.getElementById('edit-post-wrap');
         ov.classList.add('active');
@@ -3110,13 +3117,20 @@
         const wrap = document.getElementById('edit-post-wrap');
         ov.classList.remove('visible');
         wrap.classList.remove('visible');
+        const mediaPreview = document.getElementById('edit-post-media-preview');
+        if (mediaPreview) mediaPreview.innerHTML = '';
         setTimeout(() => { ov.classList.remove('active'); document.body.style.overflow = ''; }, 380);
     }
     function saveEditedPost() {
         if (postOptsId === null) return;
         const post = posts.find(p => p.id === postOptsId);
         if (!post) return;
-        post.text = document.getElementById('edit-post-textarea').value.trim();
+        const nextText = document.getElementById('edit-post-textarea').value.trim();
+        if (nextText === '' && (post.text || '').trim() !== '') {
+            showToast('Текст поста не может быть пустым');
+            return;
+        }
+        post.text = nextText;
         closeEditPostSheet();
         postOptsId = null;
         renderPosts();
