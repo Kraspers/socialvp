@@ -61,7 +61,7 @@
         .story-creator.visible { opacity: 1; }
         .story-creator-inner {
             width: 100%; max-width: 600px; height: 88vh;
-            background: #1c1c1e; border-radius: 20px 20px 0 0;
+            background: #1a1b1f; border-radius: 20px 20px 0 0;
             display: flex; flex-direction: column; overflow: hidden; position: relative;
             transform: translateY(100%);
             transition: transform 0.45s cubic-bezier(0.16,1,0.3,1);
@@ -73,7 +73,7 @@
             .story-creator-inner { transform: translateY(100%); opacity: 1; }
             .story-creator.visible .story-creator-inner { transform: translateY(0); }
         }
-        .creator-header { padding: 16px; display: flex; align-items: center; justify-content: space-between; background: #1c1c1e; border-bottom: 1px solid rgba(255,255,255,0.06); }
+        .creator-header { padding: 16px; display: flex; align-items: center; justify-content: space-between; background: #1a1b1f; border-bottom: 1px solid rgba(255,255,255,0.06); }
         .creator-close { background: none; border: none; color: white; font-size: 28px; cursor: pointer; }
         .creator-title { color: white; font-weight: 600; font-size: 16px; }
         .creator-done { background: #0D7EFF; color: white; border: none; padding: 8px 20px; border-radius: 20px; font-weight: 600; cursor: pointer; }
@@ -260,9 +260,9 @@
         .splash-screen.hidden { opacity: 0; visibility: hidden; }
         .splash-logo { width: 120px; height: 120px; object-fit: contain; margin-bottom: 20px; animation: splashPulse 1.5s ease-in-out infinite; }
         @keyframes splashPulse { 0% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.1); opacity: 1; } 100% { transform: scale(1); opacity: 0.8; } }
-        .post-modal { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.55); z-index: 10000; display: none; align-items: flex-end; justify-content: center; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); opacity: 0; transition: opacity 0.3s ease; }
+        .post-modal { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.55); z-index: 10000; display: none; align-items: flex-end; justify-content: center; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); opacity: 0; transition: opacity 0.3s ease; pointer-events: none; }
         .post-modal.active { display: flex; }
-        .post-modal.visible { opacity: 1; }
+        .post-modal.visible { opacity: 1; pointer-events: auto; }
         /* Single wrapper that slides up as one unit */
         .post-modal-wrap { width: 100%; max-width: 600px; display: flex; flex-direction: column; transform: translateY(110%); transition: transform 0.4s cubic-bezier(0.16,1,0.3,1); }
         .post-modal.active .post-modal-wrap { transform: translateY(0); }
@@ -270,12 +270,19 @@
         .post-modal-outer-back { background: none; border: none; color: white; cursor: pointer; display: flex; align-items: center; gap: 6px; font-size: 20px; font-weight: 700; font-family: inherit; padding: 8px 12px; border-radius: 12px; }
         .post-modal-outer-back:hover { background: rgba(255,255,255,0.08); }
         .post-modal-outer-back svg { flex-shrink: 0; }
-        .post-modal-content { background: #131315; width: 100%; height: 84vh; position: relative; display: flex; flex-direction: column; border-radius: 22px 22px 0 0; border: 1px solid rgba(255,255,255,0.07); border-bottom: none; overflow: hidden; }
+        .post-modal-content { background: #1a1b1f; width: 100%; height: 84vh; position: relative; display: flex; flex-direction: column; border-radius: 22px 22px 0 0; border: none; overflow: hidden; }
         .post-modal-topbar { display: none; }
         .post-modal-back { display: none; }
         .post-modal-handle { width: 36px; height: 4px; background: rgba(255,255,255,0.18); border-radius: 2px; margin: 10px auto 0; flex-shrink: 0; }
         .post-modal-header { display: none; }
         .post-modal-close { background: none; border: none; color: white; font-size: 24px; cursor: pointer; padding: 8px; margin-right: 16px; display: flex; align-items: center; justify-content: center; }
+
+        #user-profile-modal .post-modal-header {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 8px 8px 8px 0; border-bottom: 1px solid rgba(255,255,255,0.06);
+            background: #131315;
+        }
+        .edit-post-sheet .post-opts-header { display: none; }
         .post-modal-body { flex: 1; overflow-y: auto; padding: 16px; }
         .post-modal .post { background: transparent; border: none; padding: 0; margin: 0; backdrop-filter: none; }
         .post-modal .post-actions { margin-left: 0; justify-content: space-around; border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); padding: 12px 0; margin-top: 20px; }
@@ -334,8 +341,8 @@
         .stat-item { display: flex; gap: 4px; font-size: 15px; cursor: pointer; }
         .stat-number { font-weight: 700; }
         .stat-label { color: rgba(255,255,255,0.6); }
-        .edit-profile-btn { margin-top: 16px; width: 100%; padding: 14px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.04); border-radius: 20px; font-weight: 600; cursor: pointer; transition: background 0.2s; font-size: 15px; color: #e6e6e9; }
-        .edit-profile-btn:hover { background: rgba(255,255,255,0.04); }
+        .edit-profile-btn { margin-top: 16px; width: 100%; padding: 14px; background: #ffffff; border: none; border-radius: 22px; font-weight: 700; cursor: pointer; transition: opacity 0.2s; font-size: 16px; color: #000; }
+        .edit-profile-btn:hover { opacity: 0.92; }
 
         /* Profile cover menu button — top-left, frosted glass */
         .profile-cover-menu-btn {
@@ -522,7 +529,7 @@
         }
 
         @media (min-width: 900px) {
-            .bottom-nav { bottom: auto; right: auto; left: calc(50% - 430px); top: 80px; transform: translateY(0); width: 200px; height: auto; display: flex; flex-direction: column; padding: 8px; border-radius: 18px; gap: 2px; max-width: 200px; background: transparent; border: none; box-shadow: none; backdrop-filter: none; -webkit-backdrop-filter: none; }
+            .bottom-nav { bottom: auto; right: auto; left: max(16px, calc(50% - 520px)); top: 80px; transform: translateY(0); width: 200px; height: auto; display: flex; flex-direction: column; padding: 8px; border-radius: 18px; gap: 2px; max-width: 200px; background: transparent; border: none; box-shadow: none; backdrop-filter: none; -webkit-backdrop-filter: none; }
             .nav-slider { display: none; }
             .nav-btn { width: 100%; height: 52px; padding: 0 14px; border-radius: 14px; flex-direction: row; gap: 14px; flex: none; justify-content: flex-start; font-size: 16px; font-weight: 600; }
             .nav-btn span { display: block; }
@@ -543,16 +550,17 @@
             .post-modal-outer-header { padding: 0 8px 10px; }
             .post-modal-content {
                 height: 85vh; max-height: 800px; border-radius: 18px !important;
-                border: 1px solid rgba(255,255,255,0.08) !important;
+                border: none !important;
             }
             /* Repost modal on desktop: centered dialog */
             #repost-modal-overlay .post-modal-content {
                 height: auto; max-height: 70vh; width: 540px; max-width: 540px;
             }
+            #repost-modal-overlay .post-modal-wrap { max-width: 540px; }
             /* On desktop: centered layout */
             .post-modal { justify-content: center; align-items: center; flex-direction: column; gap: 0; }
             .post-modal-outer-header { transform: none !important; transition: none !important; max-width: 600px; padding: 0 20px 10px; }
-            .post-modal-content { border-radius: 18px !important; border-bottom: 1px solid rgba(255,255,255,0.07) !important; }
+            .post-modal-content { border-radius: 18px !important; border-bottom: none !important; }
             /* User profile modal: centered panel */
             #user-profile-modal { align-items: center; }
             #user-profile-modal .post-modal-content {
@@ -563,23 +571,25 @@
             }
             #user-profile-modal.active .post-modal-content { opacity: 1 !important; }
             /* Edit post sheet on desktop: centered dialog */
-            .edit-post-sheet {
+            .edit-post-wrap {
                 bottom: auto; top: 50%; left: 50%;
                 transform: translate(-50%, -40%) !important;
-                width: 540px; border-radius: 18px !important;
-                opacity: 0; transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), opacity 0.3s !important;
-                padding-bottom: 0 !important;
+                width: 540px;
+                opacity: 0;
+                transition: transform 0.3s cubic-bezier(0.16,1,0.3,1), opacity 0.3s !important;
             }
-            .edit-post-sheet.visible {
+            .edit-post-wrap.visible {
                 transform: translate(-50%, -50%) !important;
                 opacity: 1 !important;
             }
+            .edit-post-sheet { border-radius: 18px !important; padding-bottom: 0 !important; }
             /* Story creator on desktop: centered dialog */
             .story-creator { align-items: center; justify-content: center; }
             .story-creator-inner {
                 border-radius: 18px !important;
                 height: 80vh; max-width: 500px;
                 border: 1px solid rgba(255,255,255,0.1) !important;
+                overflow: hidden;
             }
         }
 
@@ -594,14 +604,34 @@
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
             align-items: flex-end; justify-content: center;
+            pointer-events: none;
         }
         .edit-modal-overlay.active { display: flex; }
-        .edit-modal-overlay.visible { opacity: 1; }
+        .edit-modal-overlay.visible { opacity: 1; pointer-events: auto; }
+        #edit-modal-overlay {
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+        }
+        #edit-profile-wrap {
+            width: 100%; max-width: 600px;
+            display: flex; flex-direction: column;
+            transform: translateY(100%);
+            transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+        }
+        #edit-modal-overlay.visible #edit-profile-wrap { transform: translateY(8px); }
+        #edit-modal-overlay #edit-modal { transform: none !important; }
+        #edit-modal-overlay.visible #edit-modal { transform: none !important; }
+        .edit-modal-topbar {
+            width: 100%; max-width: 600px;
+            padding: 0 8px 10px;
+            display: flex; align-items: center;
+        }
         .edit-modal {
             width: 100%; max-width: 600px;
-            background: #0f0f11;
+            background: #1a1b1f;
             border-radius: 24px 24px 0 0;
-            border: 1px solid rgba(255,255,255,0.06);
+            border: none;
             border-bottom: none;
             max-height: 92vh;
             display: flex; flex-direction: column;
@@ -821,8 +851,8 @@
         .repost-modal-overlay.active { display: flex; }
         .repost-modal-overlay.visible { opacity: 1; }
         .repost-modal-box {
-            width: 100%; max-width: 600px; background: #0f0f11;
-            border-radius: 24px 24px 0 0; border: 1px solid rgba(255,255,255,0.07);
+            width: 100%; max-width: 600px; background: #1a1b1f;
+            border-radius: 24px 24px 0 0; border: none;
             border-bottom: none; padding: 0 0 40px;
             transform: translateY(100%); transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
         }
@@ -867,9 +897,10 @@
             position: fixed; inset: 0; background: rgba(0,0,0,0.55);
             backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
             z-index: 17000; display: none; opacity: 0; transition: opacity 0.28s;
+            pointer-events: none;
         }
         .post-opts-overlay.active { display: block; }
-        .post-opts-overlay.visible { opacity: 1; }
+        .post-opts-overlay.visible { opacity: 1; pointer-events: auto; }
         /* Opts wrap — slides as one unit */
         .post-opts-wrap {
             position: fixed; left: 50%; bottom: 0;
@@ -878,8 +909,9 @@
             z-index: 17001;
             display: flex; flex-direction: column;
             transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+            pointer-events: none;
         }
-        .post-opts-wrap.visible { transform: translateX(-50%) translateY(0); }
+        .post-opts-wrap.visible { transform: translateX(-50%) translateY(0); pointer-events: auto; }
         .post-opts-outer-header {
             padding: 0 8px 10px;
             display: flex; align-items: center;
@@ -893,8 +925,8 @@
         .post-opts-outer-back:hover { background: rgba(255,255,255,0.08); }
         .post-opts-sheet {
             width: 100%; padding: 0;
-            background: #131315; border-radius: 22px 22px 0 0;
-            border: 1px solid rgba(255,255,255,0.07); border-bottom: none;
+            background: #1a1b1f; border-radius: 22px 22px 0 0;
+            border: none;
         }
         .post-opts-handle {
             width: 36px; height: 4px; background: rgba(255,255,255,0.18);
@@ -921,19 +953,42 @@
         .edit-post-overlay {
             position: fixed; inset: 0; background: rgba(0,0,0,0.55);
             z-index: 18000; display: none; opacity: 0; transition: opacity 0.28s;
+            pointer-events: none;
+            backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
         }
         .edit-post-overlay.active { display: block; }
-        .edit-post-overlay.visible { opacity: 1; }
-        .edit-post-sheet {
+        .edit-post-overlay.visible { opacity: 1; pointer-events: auto; }
+        .edit-post-wrap {
             position: fixed; left: 50%; bottom: 0;
             transform: translateX(-50%) translateY(110%);
             width: 100%; max-width: 600px;
-            z-index: 18001; background: #1c1c1e; border-radius: 20px 20px 0 0;
-            transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+            z-index: 18001;
+            display: flex; flex-direction: column;
+            transition: transform 0.42s cubic-bezier(0.16,1,0.3,1);
+            pointer-events: none;
         }
-        .edit-post-sheet.visible { transform: translateX(-50%) translateY(0); }
+        .edit-post-wrap.visible { transform: translateX(-50%) translateY(8px); pointer-events: auto; }
+        .edit-post-topbar { padding: 0 8px 10px; display: flex; align-items: center; }
+        .edit-post-sheet {
+            width: 100%; background: #1a1b1f; border-radius: 20px 20px 0 0;
+            border: none;
+            overflow: hidden;
+        }
+        .edit-post-save-row {
+            position: sticky; bottom: 0;
+            padding: 12px 16px 32px;
+            background: linear-gradient(to top,#1a1b1f 60%,transparent);
+            display: flex; justify-content: flex-end;
+        }
+        .edit-post-save-btn {
+            background: #0D7EFF; border: none; border-radius: 28px; color: white;
+            font-size: 16px; font-weight: 700; padding: 14px 32px;
+            cursor: pointer; font-family: inherit;
+        }
+        .edit-post-media-preview { padding: 0 16px 12px; display: flex; flex-wrap: wrap; gap: 6px; }
+        .edit-post-media-preview .post-media-grid { margin: 0; }
         @media (max-width: 899px) {
-            .edit-post-sheet { padding-bottom: 96px; }
+            .edit-post-sheet { padding-bottom: 0; }
         }
         /* ===== COMPOSER MEDIA PREVIEW ===== */
         .composer-media-preview {
@@ -1131,7 +1186,7 @@
         /* ===== DESKTOP LOGOUT + FOOTER ===== */
         .desktop-logout-btn {
             display: none;
-            position: fixed; bottom: 32px; left: calc(50% - 430px);
+            position: fixed; bottom: 32px; left: max(16px, calc(50% - 520px));
             z-index: 500;
             background: none; border: none; cursor: pointer;
             color: rgba(255,255,255,0.55); font-size: 15px; font-weight: 500;
@@ -1142,7 +1197,7 @@
         .desktop-logout-btn:hover { background: rgba(255,255,255,0.06); color: #e6e6e9; }
         .desktop-footer {
             display: none;
-            position: fixed; bottom: 24px; right: calc(50% - 430px);
+            position: fixed; bottom: 24px; right: max(16px, calc(50% - 520px));
             z-index: 500;
             flex-direction: column; align-items: flex-end; gap: 4px;
         }
@@ -1435,8 +1490,11 @@
     <div class="story-creator" id="story-creator">
         <div class="story-creator-inner">
             <div class="creator-header">
-                <button class="creator-close" id="creator-close">×</button>
-                <div class="creator-title">Создать историю</div>
+                <button class="post-modal-outer-back" id="creator-close">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+                    История
+                </button>
+                <div class="creator-title" style="display:none;">Создать историю</div>
                 <button class="creator-done" id="creator-done" style="display:none;">Готово</button>
             </div>
             <div class="creator-content" style="position:relative;">
@@ -1529,13 +1587,17 @@
 
 <!-- Edit Profile Modal -->
 <div class="edit-modal-overlay" id="edit-modal-overlay">
-    <div class="edit-modal" id="edit-modal">
+    <div id="edit-profile-wrap">
+        <div class="edit-modal-topbar">
+            <button class="post-modal-outer-back" onclick="closeEditModal()">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+                Редактирование
+            </button>
+        </div>
+        <div class="edit-modal" id="edit-modal">
         <div class="edit-modal-handle"></div>
         <div class="edit-modal-header">
-            <button class="edit-close-pill" onclick="closeEditModal()">
-                <span class="edit-close-x"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><line x1="1" y1="1" x2="9" y2="9" stroke="rgba(255,255,255,0.85)" stroke-width="1.8" stroke-linecap="round"/><line x1="9" y1="1" x2="1" y2="9" stroke="rgba(255,255,255,0.85)" stroke-width="1.8" stroke-linecap="round"/></svg></span>
-                <span class="edit-close-label">Редактирование</span>
-            </button>
+            <div></div>
             <button class="edit-modal-save" onclick="saveProfile()">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
             </button>
@@ -1603,6 +1665,7 @@
                 <button class="ep-logout-btn" onclick="doLogout()">Выйти из аккаунта</button>
             </div>
         </div>
+    </div>
     </div>
 </div>
 
@@ -1680,6 +1743,9 @@
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
             </button>
             <div style="font-weight:700;font-size:17px;" id="upm-title"></div>
+            <button class="post-modal-close" onclick="closeUserProfile()" style="margin-right:8px;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
         </div>
         <div class="post-modal-body" id="upm-body" style="padding:0;overflow-y:auto;"></div>
     </div>
@@ -1750,25 +1816,29 @@
             </button>
         </div>
         </div>
+</div>
 </div><!-- end post-opts-wrap -->
 
 <!-- Edit Post Sheet -->
 <div class="edit-post-overlay" id="edit-post-overlay"></div>
-<div class="edit-post-sheet" id="edit-post-sheet">
-    <div class="post-opts-handle"></div>
-    <div class="post-opts-header">
-        <button class="edit-close-pill" onclick="closeEditPostSheet()">
-            <span class="edit-close-x"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><line x1="1" y1="1" x2="9" y2="9" stroke="rgba(255,255,255,0.85)" stroke-width="1.8" stroke-linecap="round"/><line x1="9" y1="1" x2="1" y2="9" stroke="rgba(255,255,255,0.85)" stroke-width="1.8" stroke-linecap="round"/></svg></span>
-            <span class="edit-close-label">Редактировать пост</span>
-        </button>
-        <button class="edit-modal-save" onclick="saveEditedPost()">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+<div class="edit-post-wrap" id="edit-post-wrap">
+    <div class="edit-post-topbar">
+        <button class="post-modal-outer-back" onclick="closeEditPostSheet()">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+            Редактировать пост
         </button>
     </div>
-    <div style="padding:16px 16px 40px;">
-        <textarea id="edit-post-textarea" placeholder="Редактировать пост..."
-            style="width:100%;box-sizing:border-box;background:#2a2a2e;border:none;border-radius:16px;padding:16px;color:#e6e6e9;font-size:16px;font-family:inherit;outline:none;resize:none;min-height:120px;line-height:1.5;-webkit-user-select:text;user-select:text;"
-            onfocus="this.style.background='#333338'" onblur="this.style.background='#2a2a2e'"></textarea>
+    <div class="edit-post-sheet" id="edit-post-sheet">
+        <div class="post-opts-handle"></div>
+        <div style="padding:16px 16px 12px;">
+            <textarea id="edit-post-textarea" placeholder="Редактировать пост..."
+                style="width:100%;box-sizing:border-box;background:#2a2a2e;border:none;border-radius:16px;padding:16px;color:#e6e6e9;font-size:16px;font-family:inherit;outline:none;resize:none;min-height:120px;line-height:1.5;-webkit-user-select:text;user-select:text;"
+                onfocus="this.style.background='#333338'" onblur="this.style.background='#2a2a2e'"></textarea>
+        </div>
+        <div class="edit-post-media-preview" id="edit-post-media-preview"></div>
+        <div class="edit-post-save-row">
+            <button class="edit-post-save-btn" onclick="saveEditedPost()">Сохранить</button>
+        </div>
     </div>
 </div>
 
@@ -1876,6 +1946,8 @@
                 </div>`;
             el.addEventListener('click', e => {
                 if (e.target.closest('.action-btn')) return;
+                if (e.target.closest('.post-options-btn')) return;
+                if (e.target.closest('.post-media-item')) return;
                 if (e.target.closest('[data-open-repost-id]')) return;
                 if (e.target.closest('[data-open-profile]')) return;
                 if (e.target.classList.contains('mention')) return;
@@ -1954,6 +2026,8 @@
             </div>`;
         el.addEventListener('click', e => {
             if (e.target.closest('.action-btn')) return;
+            if (e.target.closest('.post-options-btn')) return;
+            if (e.target.closest('.post-media-item')) return;
             if (e.target.closest('[data-open-repost-id]')) return;
             if (e.target.closest('[data-open-profile]')) return;
             if (e.target.classList.contains('mention')) return;
@@ -2254,6 +2328,7 @@
 
     // ===== COMPOSER MEDIA =====
     let composerMedia = [];
+    let editPostMedia = [];
     const composerFileInput = document.getElementById('composer-file-input');
     const composerMediaBtn = document.getElementById('composer-media-btn');
     const composerMediaPreview = document.getElementById('composer-media-preview');
@@ -2299,6 +2374,31 @@
 
     function updatePostSubmitState() {
         postSubmit.disabled = postInput.value.trim().length === 0 && composerMedia.length === 0;
+    }
+
+    function renderEditPostMediaPreview() {
+        const box = document.getElementById('edit-post-media-preview');
+        if (!box) return;
+        box.innerHTML = '';
+        editPostMedia.forEach((m, idx) => {
+            const wrap = document.createElement('div');
+            wrap.className = 'media-thumb-wrap';
+            if (m.type === 'video') {
+                wrap.innerHTML = `<video class="media-thumb" src="${m.src}" muted></video><span class="media-thumb-video-badge">Видео</span>`;
+            } else {
+                wrap.innerHTML = `<img class="media-thumb" src="${m.src}" alt="">`;
+            }
+            const rm = document.createElement('button');
+            rm.className = 'media-thumb-remove';
+            rm.innerHTML = '×';
+            rm.onclick = (e) => {
+                e.stopPropagation();
+                editPostMedia.splice(idx, 1);
+                renderEditPostMediaPreview();
+            };
+            wrap.appendChild(rm);
+            box.appendChild(wrap);
+        });
     }
 
     postSubmit.addEventListener('click', () => {
@@ -2734,12 +2834,14 @@
         closeCropModal();
     }
     const cropWrap = document.getElementById('crop-canvas-wrap');
-    cropWrap.addEventListener('mousedown', e => { cropDragging = true; cropStartX = e.clientX - cropOffsetX; cropStartY = e.clientY - cropOffsetY; cropWrap.style.cursor = 'grabbing'; });
-    document.addEventListener('mousemove', e => { if (!cropDragging) return; cropOffsetX = e.clientX - cropStartX; cropOffsetY = e.clientY - cropStartY; drawCrop(); });
-    document.addEventListener('mouseup', () => { cropDragging = false; cropWrap.style.cursor = 'grab'; });
-    cropWrap.addEventListener('touchstart', e => { const t = e.touches[0]; cropDragging = true; cropStartX = t.clientX - cropOffsetX; cropStartY = t.clientY - cropOffsetY; }, {passive:true});
-    cropWrap.addEventListener('touchmove', e => { if (!cropDragging) return; const t = e.touches[0]; cropOffsetX = t.clientX - cropStartX; cropOffsetY = t.clientY - cropStartY; drawCrop(); }, {passive:true});
-    cropWrap.addEventListener('touchend', () => { cropDragging = false; });
+    if (cropWrap) {
+        cropWrap.addEventListener('mousedown', e => { cropDragging = true; cropStartX = e.clientX - cropOffsetX; cropStartY = e.clientY - cropOffsetY; cropWrap.style.cursor = 'grabbing'; });
+        document.addEventListener('mousemove', e => { if (!cropDragging) return; cropOffsetX = e.clientX - cropStartX; cropOffsetY = e.clientY - cropStartY; drawCrop(); });
+        document.addEventListener('mouseup', () => { cropDragging = false; cropWrap.style.cursor = 'grab'; });
+        cropWrap.addEventListener('touchstart', e => { const t = e.touches[0]; cropDragging = true; cropStartX = t.clientX - cropOffsetX; cropStartY = t.clientY - cropOffsetY; }, {passive:true});
+        cropWrap.addEventListener('touchmove', e => { if (!cropDragging) return; const t = e.touches[0]; cropOffsetX = t.clientX - cropStartX; cropOffsetY = t.clientY - cropStartY; drawCrop(); }, {passive:true});
+        cropWrap.addEventListener('touchend', () => { cropDragging = false; });
+    }
     document.querySelector('.edit-profile-btn').addEventListener('click', openEditModal);
 
     // ===== FULLSCREEN PHOTO VIEWER =====
@@ -2796,6 +2898,8 @@
         document.getElementById('pv-next').disabled = pvIndex === pvMedia.length - 1;
     }
     document.addEventListener('click', e => {
+        if (document.getElementById('post-opts-overlay')?.classList.contains('active')) return;
+        if (e.target.closest('#post-opts-wrap, #global-post-dd, .post-options-btn')) return;
         const item = e.target.closest('.post-media-item');
         if (!item) return;
         e.stopPropagation(); // prevent post from opening
@@ -2960,21 +3064,18 @@
         e.stopPropagation();
         if (window.matchMedia('(min-width: 900px)').matches) {
             postOptsId = postId;
-            // Update pin label
             const post = posts.find(p => p.id === postId);
             const isPinned = post && (post.isRepost ? pinnedRepostId === postId : pinnedPostId === postId);
             document.getElementById('global-dd-pin-label').textContent = isPinned ? 'Открепить' : 'Закрепить';
-            // Position global dropdown near button
             const dd = document.getElementById('global-post-dd');
             const rect = btn.getBoundingClientRect();
             dd.style.display = 'block';
-            dd.style.top = (rect.bottom + 6) + 'px';
+            dd.style.top = (rect.bottom + 8) + 'px';
             dd.style.left = (rect.right - dd.offsetWidth) + 'px';
-            // If dropdown would go off right edge
-            if (parseFloat(dd.style.left) < 0) dd.style.left = rect.left + 'px';
-        } else {
-            openPostOptions(e, postId);
+            if (parseFloat(dd.style.left) < 8) dd.style.left = Math.max(8, rect.left) + 'px';
+            return;
         }
+        openPostOptions(e, postId);
     }
     // Close dropdown on outside click
     document.addEventListener('click', e => {
@@ -3028,28 +3129,38 @@
         // Open edit sheet
         postOptsId = id; // restore for save
         document.getElementById('edit-post-textarea').value = post.text || '';
+        editPostMedia = (post.media || []).map(m => ({...m}));
+        renderEditPostMediaPreview();
         const ov = document.getElementById('edit-post-overlay');
-        const sheet = document.getElementById('edit-post-sheet');
+        const wrap = document.getElementById('edit-post-wrap');
         ov.classList.add('active');
         requestAnimationFrame(() => requestAnimationFrame(() => {
             ov.classList.add('visible');
-            sheet.classList.add('visible');
+            wrap.classList.add('visible');
             document.getElementById('edit-post-textarea').focus();
         }));
         document.body.style.overflow = 'hidden';
     }
     function closeEditPostSheet() {
         const ov = document.getElementById('edit-post-overlay');
-        const sheet = document.getElementById('edit-post-sheet');
+        const wrap = document.getElementById('edit-post-wrap');
         ov.classList.remove('visible');
-        sheet.classList.remove('visible');
+        wrap.classList.remove('visible');
+        editPostMedia = [];
+        renderEditPostMediaPreview();
         setTimeout(() => { ov.classList.remove('active'); document.body.style.overflow = ''; }, 380);
     }
     function saveEditedPost() {
         if (postOptsId === null) return;
         const post = posts.find(p => p.id === postOptsId);
         if (!post) return;
-        post.text = document.getElementById('edit-post-textarea').value.trim();
+        const nextText = document.getElementById('edit-post-textarea').value.trim();
+        if (nextText === '' && editPostMedia.length === 0) {
+            showToast('Нельзя сохранить пустой пост');
+            return;
+        }
+        post.text = nextText;
+        post.media = editPostMedia.map(m => ({...m}));
         closeEditPostSheet();
         postOptsId = null;
         renderPosts();
